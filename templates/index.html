@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Picture Share</title>
+        <link type="text/css" href= {{ static_url("css/bootstrap.css") }} rel="stylesheet" />
+        <link type="text/css" href= {{ static_url("css/style.css") }} rel="stylesheet" />
+	<link rel="shortcut icon" href= {{ static_url("network.png") }} >
+        <style type="text/css">
+	.onediv{width:250px; height:100px; float:left; margin:0 0 0 5px; border:0px #000 solid; }
+	.twodiv{width:500px; height:50px; float:right; margin:40px 10px 0 5px; border:0px #000 solid;}
+        </style>
+    </head>
+    <BODY>
+        <div class="container">
+	<div class="header">
+            <fieldset>
+		<ul class="nav nav-pills pull-right">
+	    	    <li><a href="/"><spam>Index</spam></a></li>
+                    <li><a href="/about">About us</a></li>
+                    {%if email =="visitor" %}
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                    {% else %}
+                    <li><a href="/logout">Logout</a></li>
+                    <li> <a href="/person"> {{ email }}</a></li>
+                    {% end %}
+		</ul>
+            </fieldset>
+            <a href="/"><img style="width:200px;height:100px; margin:0 0  0 5px;" src={{ static_url("network.png") }}></a>
+	</div>
+        </div>
+        <div>
+			{% for photo in all_photo%}
+            <img src = {{ static_url(photo['url']) }} />
+			{% end %}
+        </div>
+
+    </body>
+</html>
+

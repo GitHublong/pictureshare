@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Person Space</title>
+    </head>
+    <body>
+        <div>
+            <a href="/" >index</a>
+            <a href="/logout">logout</a>
+        </div>
+        <div>
+            {% for photo in user_photo %}
+            <div >	
+            	<img src = {{ static_url(photo['url']) }} />
+                <label>title: {{ photo['title'] }}</label>
+                <label>describe: {{ photo['des'] }}</label>
+            </div>
+            <div>
+                {% for comm in comment %}
+                {% if comm['pict_id'] == photo['id'] %}
+                <p> {{ comm['comm'] }} </p>
+                {% end %}
+                {% end %}
+            </div>
+            {% end %}
+        </div>
+        <div>
+            <form action="/upload" enctype="multipart/form-data" method="POST">
+                    <fieldset>
+                        <label>title: </label>
+                        <input type="TEXT" name="title" placeholder="max 16 characters" />
+                        <label>describe: </label>
+                        <input type="TEXT" name="des" placeholder="max 64 characters"/>
+                        <label>picture:</label>
+                        <input type="file" name="myfile" >
+               
+                    <button data-dismiss="modal" aria-hidden="true">close</button>
+                    <button type="submit">upload</button>
+		   </fieldset>
+            </form>
+        </div>
+    </body>
+</html>
+
